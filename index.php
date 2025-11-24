@@ -27,7 +27,6 @@
     </script>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-S
   <body>
      <nav class="navegacion">
         <h1>Terminal de Transporte</h1>
@@ -61,7 +60,7 @@ S
 
         <a href="pages/empresas.php">
           <div class="iconos">
-            <img src="iconos/empresas.svg" alt="Icono de empresas" />
+            <img src="iconos/empresas.svg" alt="Logo empresa de trasporte" />
             <h3>Empresas</h3>
           </div>
         </a>
@@ -118,4 +117,5 @@ S
     </footer>
   </body>
 </html>
+
 
