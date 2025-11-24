@@ -3,34 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
+    
     <title>Terminal de Transporte de Bogotá</title>
+    <meta name="description" content="Terminal de Transporte - información de rutas, empresas, vehículos y compra de tiquetes en línea.">
+    <meta name="keywords" content="terminal, transporte, rutas, tiquetes, buses, Bogotá">
+    <meta name="author" content="Juan David Luna">
+    <link rel="canonical" href="https://juand-luna.github.io/Terminal-Trasporte-UNAD/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Terminal de Transporte - Inicio" />
+    <meta property="og:description" content="Bienvenido a la Terminal de Transporte - consulta rutas y compra tiquetes." />
+    <meta property="og:image" content="https://juand-luna.github.io/Terminal-Trasporte-UNAD/imagenes/terminal.webp" />
+    <meta property="og:url" content="https://juand-luna.github.io/Terminal-Trasporte-UNAD/" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Terminal de Transporte",
+      "url": "https://juand-luna.github.io/Terminal-Trasporte-UNAD/",
+      "logo": "https://juand-luna.github.io/Terminal-Trasporte-UNAD/imagenes/logo.webp",
+      "sameAs": []
+    }
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-
+S
   <body>
-    <nav class="navegacion">
-      <h1>Terminal de Transporte</h1>
-      <ul>
-        <li>
-          <a href="index.php"><button>Inicio</button></a>
-        </li>
-        <li>
-          <a href="pages/rutas.php"><button>Rutas</button></a>
-        </li>
-        <li>
-          <a href="pages/empresas.php"><button>Empresas</button></a>
-        </li>
-        <li>
-          <a href="pages/vehiculos.php"><button>Vehículos</button></a>
-        </li>
-        <li>
-          <a href="pages/cotizacion.php"><button>Cotización</button></a>
-        </li>
-        <li>
-          <a href="pages/compra.php"><button>Compra tu Ticket</button></a>
-        </li>
-      </ul>
-    </nav>
+     <nav class="navegacion">
+        <h1>Terminal de Transporte</h1>
+        <ul>
+          <li><a href="index.php"><button>Inicio</button></a></li>
+          <li><a href="pages/rutas.php"><button>Rutas</button></a></li>
+          <li><a href="pages/empresas.php"><button>Empresas</button></a></li>
+          <li><a href="pages/vehiculos.php"><button>Vehículos</button></a></li>
+          <li><a href="pages/cotizacion.php"><button>Cotización</button></a></li>
+          <li><a href="pages/compra.php"><button>Compra tu Ticket</button></a></li>
+        </ul>
+      </nav>
 
     <main>
       <div class="introduccion">
@@ -109,3 +118,4 @@
     </footer>
   </body>
 </html>
+
