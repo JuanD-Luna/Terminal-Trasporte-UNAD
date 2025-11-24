@@ -77,7 +77,7 @@
 
       <!--Botón discreto para acceder al módulo de administración -->
       <div class="admin-link">
-        <a href="vehiculos/ver.php">
+        <a href="../crud/vehiculos/ver.php">
           <button>Acceso administrativo (CRUD de vehículos)</button>
         </a>
       </div>

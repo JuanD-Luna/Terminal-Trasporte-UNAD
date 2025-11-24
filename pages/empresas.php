@@ -58,7 +58,7 @@
       <!-- 🔹 Botón de acceso administrativo -->
       <div class="admin-access">
         <p>¿Eres administrador?</p>
-        <a href="empresas/ver.php"><button>Acceder al panel de gestión</button></a>
+        <a href="../crud/empresas/ver.php"><button>Acceder al panel de gestión</button></a>
       </div>
     </main>
 
