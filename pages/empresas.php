@@ -38,10 +38,31 @@
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
+          // Mapeo manual para logos que no coinciden con la regla automática
+          $logoMap = [
+            'Expreso Bolivariano' => 'bolivariano-logo.jpg',
+            'Flota Magdalena'     => 'flotamagdalena-logo.jpg',
+            'Copetran'            => 'copetran-logo.jpg'
+          ];
+
           while ($row = mysqli_fetch_assoc($result)) {
+            // Si existe un mapeo explícito y el archivo existe, úsalo
+            if (isset($logoMap[$row['nombre']]) && file_exists(__DIR__ . '/../imagenes/' . $logoMap[$row['nombre']])) {
+              $logoUrl = '../imagenes/' . $logoMap[$row['nombre']];
+            } else {
+              // Construir nombre de logo a partir del nombre de la empresa (fallback automático)
+              $logoName = strtolower(str_replace(' ', '', $row['nombre'])) . '-logo.jpg';
+              $logoPath = __DIR__ . '/../imagenes/' . $logoName;
+              if (file_exists($logoPath)) {
+                $logoUrl = '../imagenes/' . $logoName;
+              } else {
+                $logoUrl = '../iconos/empresa.svg';
+              }
+            }
+
             echo "
             <article class='info-empresa'>
-              <img src='../iconos/empresa.svg' alt='Logo Empresa'>
+              <img src='" . $logoUrl . "' alt='Logo {$row['nombre']}'>
               <h3>{$row['nombre']}</h3>
               <p><strong>Teléfono:</strong> {$row['telefono']}</p>
               <p><strong>Email:</strong> {$row['email']}</p>

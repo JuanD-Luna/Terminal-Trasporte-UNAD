@@ -53,16 +53,25 @@
 
         <?php
         if (isset($_POST['comprar'])) {
-          $nombre = $_POST['nombre'];
-          $ruta = $_POST['ruta'];
-          $cantidad = $_POST['cantidad'];
-          $pago = $_POST['pago'];
+          // Sanitizar entradas mínimamente
+          $nombre = trim($_POST['nombre']);
+          $ruta = (int) $_POST['ruta'];
+          $cantidad = (int) $_POST['cantidad'];
+          $pago = trim($_POST['pago']);
 
-          $query = "INSERT INTO compras (nombre, ruta_id, cantidad, metodo_pago) VALUES ('$nombre', '$ruta', '$cantidad', '$pago')";
-          if (mysqli_query($conn, $query)) {
-            echo "<p>✅ Compra registrada exitosamente.</p>";
+          // Usar prepared statement para evitar inyección SQL
+          $stmt = mysqli_prepare($conn, "INSERT INTO compras (nombre, ruta_id, cantidad, metodo_pago) VALUES (?, ?, ?, ?)");
+          if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "siis", $nombre, $ruta, $cantidad, $pago);
+            if (mysqli_stmt_execute($stmt)) {
+              echo "<p>✅ Compra registrada exitosamente.</p>";
+            } else {
+              // Mostrar error de BD para depuración
+              echo "<p>Error al registrar la compra: " . htmlspecialchars(mysqli_stmt_error($stmt)) . "</p>";
+            }
+            mysqli_stmt_close($stmt);
           } else {
-            echo "<p>Error al registrar la compra.</p>";
+            echo "<p>Error al preparar la consulta: " . htmlspecialchars(mysqli_error($conn)) . "</p>";
           }
         }
         ?>

@@ -32,17 +32,26 @@
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
+          $imagenes = array(
+            'bogota-cali.jpg',
+            'bogota-medellin.jpg',
+            'bogota-villao.jpg'
+          );
+          $contador = 0;
+          
           while ($row = mysqli_fetch_assoc($result)) {
+            $imagenRuta = $imagenes[$contador % count($imagenes)];
+            
             echo "
-              <article class='ruta'>
-                <div>
-                  <h3>{$row['origen']} – {$row['destino']}</h3>
-                  <p>Duración estimada: {$row['duracion']} horas</p>
-                  <p>Precio: \$ {$row['precio']}</p>
-                </div>
-                <a href='compra.php'><button>Comprar Ticket</button></a>
+              <article class='info-empresa'>
+                <img src='../imagenes/{$imagenRuta}' alt='Ruta {$row['origen']} a {$row['destino']}'>
+                <h3>{$row['origen']} - {$row['destino']}</h3>
+                <p><strong>Duración:</strong> {$row['duracion']} horas</p>
+                <p><strong>Precio:</strong> \${$row['precio']}</p>
+                <a href='cotizacion.php'><button>Solicitar cotización</button></a>
               </article>
             ";
+            $contador++;
           }
         } else {
           echo "<p>No hay rutas registradas.</p>";

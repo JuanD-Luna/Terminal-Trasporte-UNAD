@@ -57,10 +57,32 @@
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
+          // Mapeo de tipos de vehículo a imágenes existentes en /imagenes
+          // Archivos en la carpeta: bus-bus.webp, bus-microbus.jpg, bus-buseta.jpg, bus-ejecutivo.webp, etc.
           while ($row = mysqli_fetch_assoc($result)) {
+            $tipo = trim($row['tipo']);
+            $tipoLower = strtolower($tipo);
+
+            // Selección por coincidencia parcial para mayor tolerancia
+            if (strpos($tipoLower, 'micro') !== false) {
+              $imgFile = 'bus-microbus.jpg';
+            } elseif (strpos($tipoLower, 'buseta') !== false) {
+              $imgFile = 'bus-buseta.jpg';
+            } else {
+              // Para 'Bus' u otros, usar imagen genérica de bus
+              $imgFile = 'bus-bus.webp';
+            }
+
+            $imgPath = __DIR__ . '/../imagenes/' . $imgFile;
+            if (file_exists($imgPath)) {
+              $imgUrl = '../imagenes/' . $imgFile;
+            } else {
+              $imgUrl = '../iconos/bus.svg';
+            }
+
             echo "
             <article class='info-empresa'>
-              <img src='../iconos/bus.svg' alt='Vehículo'>
+              <img src='" . $imgUrl . "' alt='Vehículo {$row['tipo']}'>
               <h3>{$row['tipo']}</h3>
               <p><strong>Empresa:</strong> {$row['empresa']}</p>
               <p><strong>Placa:</strong> {$row['placa']}</p>
